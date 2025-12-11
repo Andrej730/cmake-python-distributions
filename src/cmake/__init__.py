@@ -50,6 +50,8 @@ def _program_exit(name: str, *args: str) -> NoReturn:
 
 
 def ccmake() -> NoReturn:
+    if not (Path(CMAKE_BIN_DIR) / "ccmake").exists():
+        raise FileNotFoundError(f"'ccmake' is not available in cmake installation at {CMAKE_BIN_DIR}.")
     _program_exit('ccmake', *sys.argv[1:])
 
 
